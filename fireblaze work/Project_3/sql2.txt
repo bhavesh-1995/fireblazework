@@ -1,0 +1,156 @@
+show databases;
+create database Hospital_db;
+use Hospital_db;
+
+create table Patient(
+email varchar(50) PRIMARY KEY,
+password varchar(30) NOT NULL,
+name varchar(50) NOT NULL,
+address varchar(60) NOT NULL,
+gender VARCHAR(20) NOT NULL);
+
+create table medical_history(
+id int PRIMARY KEY,
+date DATE NOT NULL,
+conditions VARCHAR(100) NOT NULL,
+surgeries VARCHAR(100) NOT NULL,
+medication VARCHAR(100) NOT NULL);
+
+create table doctor (
+email VARCHAR(500) primary key,
+gender varchar(20) NOT NULL,
+password varchar(30) NOT NULL,
+name varchar(50) NOT NULL);
+
+create table appointment (
+id int PRIMARY KEY,
+date DATE NOT NULL,
+starttime TIME NOT NULL,
+endtime TIME NOT NULL);
+
+create table diagnose (
+appt int NOT NULL,
+doctor varchar(50) NOT NULL,
+diagnosis varchar(40) NOT NULL,
+prescription varchar(50) NOT NULL,
+FOREIGN KEY (appt)
+REFERENCES Appointment (id)
+ON DELETE CASCADE,
+FOREIGN KEY (doctor)
+REFERENCES Doctor (email)
+ON DELETE CASCADE,
+PRIMARY KEY (appt, doctor));
+
+insert into patient (
+Email,
+Password,
+Name,
+Address,
+Gender)
+values
+('rax@gmail.com','abcd123','Rajesh','Andra Pradesh','Male'),
+('pax@gmail.com','dcba321','Brijesh','Madhya Pradesh','Male'),
+('tax@gmail.com','bhdg234','Suresh','Maharashtra','Male'),
+('rox@gmail.com','124bhhj','Ramesh','Assam','Male'),
+('raw@gmail.com','idklml1','Durgesh','Meghalaya','Male'),
+('rtx@gmail.com','tvsapch','Jayesh','Kerela','Male'),
+('raxi@gmail.com','bjjplsr','Hema','Karnataka','female'),
+('lax@gmail.com','hndacbr','Rekha','Maharashtra','female'),
+('taxi@gmail.com','hrospln','Kalpesh','Kerela','Male'),
+('bla@gmail.com','ymha125','Lokesh','Bihar','Male'),
+('cool@gmail.com','ymrd350','Jaya','Uttar Pradesh','female'),
+('dof@gmail.com','ymhar15','Lavesh','West Bengal','Male'),
+('evl@gmail.com','yamhar1','Devesh','Manipur','Male'),
+('inc@gmail.com','tigerz1','Sushma','Punjab','female'),
+('per@gmail.com','hafrica','Mahesh','Sikkim','Male');
+
+insert into medical_history (
+id,
+date,
+conditions,
+surgeries,
+medication)
+values
+('1','2019-01-14','Body Pain','None','Iodex'),
+('2','2019-01-15','Back Pain','Lower Back','Jhandu Balm'),
+('3','2019-01-16','Headache','Knee','disprin'),
+('4','2019-01-17','Stomachache','Brain','Pudin Hara'),
+('5','2019-01-17','Diarrhea','None','ORS'),
+('6','2019-01-18','Weekness','None','Boost'),
+('7','2019-01-19','Body Pain','None','Iodex'),
+('8','2019-01-19','Headache','brain','disprin'),
+('9','2019-01-20','Headache','liver','disprin'),
+('10','2019-01-22','Diarrhea','None','ORS'),
+('11','2019-01-21','Stomachache','none','Pudin Hara'),
+('12','2019-01-24','Back Pain','Lower Back','Jhandu Balm'),
+('13','2019-01-24','Back Pain','None','Jhandu Balm'),
+('14','2019-01-25','Cold','Chest','Azithromycin'),
+('15','2019-01-26','Cough','Heart','Azithromycin');
+
+insert into doctor(
+email,
+gender,
+password,
+name)
+values
+('Raman@gmail.com','Male','R1234','Raman Kumar'),
+('Arvind@gmail.com','Male','F8643','Arvind Lal'),
+('DeviPrasad@gmail.com','Female','K5678','Devi Prasad Shetty'),
+('Balamurali@gmail.com','Male','G4321','Balamurali Ambati'),
+('Dwarkanath@gmail.com','Male','A8765','Dwarkanath Kotnis'),
+('Naresh@gmail.com','Male','P4567','Naresh Trehan'),
+('Deepak@gmail.com','Male','O4356','Deepak Chopra'),
+('Aamod@gmail.com','Male','R5678','Aamod Rao'),
+('Sanjay@gmail.com','Male','U4435','Sanjay Borude'),
+('Ramneek@gmail.com','Male','K7806','Ramneek Mahajan'),
+('Ashim@gmail.com','Female','L3468','Ashvini Desai'),
+('Thomas@gmail.com','Male','D9753','Thomas Frist'),
+('Phillip@gmail.com','Male','D0468','Phillip Frost'),
+('Yiling@gmail.com','Female','Y1268','Wu Yiling'),
+('Gary@gmail.com','Female','H9065','Gary Michelson');
+
+insert into appointment (
+id,
+date,
+starttime,
+endtime)
+values
+(1,'2019-01-15','09:00','10:00'),
+(2,'2019-01-15','10:00','11:00'),
+(3,'2019-01-15','11:00','12:00'),
+(4,'2019-01-15','12:00','13:00'),
+(5,'2019-01-16','09:00','10:00'),
+(6,'2019-01-16','10:00','11:00'),
+(7,'2019-01-16','11:00','12:00'),
+(8,'2019-01-16','12:00','13:00'),
+(9,'2019-01-17','09:00','10:00'),
+(10,'2019-01-17','10:00','11:00'),
+(11,'2019-01-17','11:00','12:00'),
+(12,'2019-01-17','12:00','12:30'),
+(13,'2019-01-17','12:30','13:00'),
+(14,'2019-01-18','09:00','10:00'),
+(15,'2019-01-18','10:00','11:00');
+
+insert into diagnose(
+appt,
+doctor,
+diagnosis,
+prescription)
+values 
+('1','Raman@gmail.com','Vitamin Deficiancy','Good Diet'),
+('2','Arvind@gmail.com','Slip Disc','Light Excercise'),
+('3','DeviPrasad@gmail.com','Migraine','Meditation'),
+('4','Balamurali@gmail.com','Acidity','Good diet'),
+('5','Dwarkanath@gmail.com','Vitamin Deficiancy','Good Diet'),
+('6','Naresh@gmail.com','Vitamin Deficiancy','Good Diet'),
+('7','Deepak@gmail.com','Vitamin Deficiancy','Good Diet'),
+('8','Aamod@gmail.com','Migraine','Meditation'),
+('9','Sanjay@gmail.com','Migraine','Meditation'),
+('10','Ramneek@gmail.com','asthama','Meditation'),
+('11','Ashim@gmail.com','slip disc','Light Excercise'),
+('12','Thomas@gmail.com','Parkinsons','Levodopa'),
+('13','Phillip@gmail.com','Amnesia','Occupational Therapy'),
+('14','Yiling@gmail.com','Insomnia','CBT'),
+('15','Gary@gmail.com','schizophrenia','Antipsychotics');
+
+select * from medical_history;
