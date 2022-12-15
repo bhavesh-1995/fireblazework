@@ -1,0 +1,155 @@
+use bank_management;
+
+
+
+-- Q1 - Find an employee’s whose id is 52 and branch name is icicp -- 
+
+SELECT 
+    first_name,
+    employee_id,
+    Branch_name,
+    department_id,
+    Branch_code
+FROM
+    Employees
+        NATURAL JOIN
+    Bank_details
+WHERE
+    employee_id = 52
+        AND branch_name = 'ICIC_P';
+
+
+
+
+-- Q2 Count the number of employees working in the loan department and show its opening dates and address.
+
+SELECT 
+    COUNT(e.employee_id) AS No_of_emp_Loan_Dep,
+    d.Department_name,
+    Opening_date
+FROM
+    employees e
+        JOIN
+    department d USING (Department_id)
+        JOIN
+    account_type ac USING (Account_no)
+WHERE
+    d.department_name = 'loan';
+    
+
+
+-- Q3 Find details department name, address, branch code, dept _id, city of the account no 18190. 
+
+SELECT 
+    c.Account_no,
+    d.Department_name,
+    Address,
+    Branch_code,
+    Department_id,
+    c.City
+FROM
+    customer c
+        JOIN
+    bank_details USING (Branch_code)
+        JOIN
+    department d USING (department_id)
+WHERE
+    c.Account_no = 18190;
+    
+
+
+-- Q4 Find department id, department name, job id whose only work in Loan, HR, admin. 
+
+SELECT 
+    e.employee_id, d.Department_id, d.Department_name, j.Job_id
+FROM
+    employees e
+        JOIN
+    Department d USING (Department_id)
+        JOIN
+    job_details j USING (Department_id)
+WHERE
+    Department_name IN ('loan' , 'hr', 'admin');
+    
+
+
+-- Q5 Find the type_account, state account number whose atm no 422748663.
+
+SELECT 
+    c.atm_no, a.Type_account, bd.State, c.Account_no
+FROM
+    Customer c
+        JOIN
+    bank_details bd USING (Branch_code)
+        JOIN
+    account_type a USING (account_no)
+WHERE
+    atm_no = 422748663;
+    
+
+
+-- Q6 Create a view with that show address, branch name, department name, first name. phone no
+
+create view view1 as
+SELECT 
+    e.First_name,
+    e.Phone_no,
+    d.Department_name,
+    bd.Branch_name,
+    bd.Address
+FROM
+    employees e
+        JOIN
+    department d USING (department_id)
+        JOIN
+    bank_details bd USING (department_id);
+    
+
+
+-- Q7  Create view city, department name whose opening date is less than 24 May 04
+
+CREATE VIEW view2 AS
+    SELECT 
+        c.city, a.department_name
+    FROM
+        account_type a
+            INNER JOIN
+        customer c ON a.account_no = c.account_no
+    WHERE
+        a.opening_date < '2004-05-24';
+
+
+
+-- Q8  Create view only job id for clerk, manager, an accountant with all detail and name it employee job_deatils
+
+CREATE VIEW emp_job_detail AS
+    SELECT 
+        *
+    FROM
+        employees
+    WHERE
+        department_id IN (SELECT 
+                department_id
+            FROM
+                job_details
+            WHERE
+                job_id IN ('ST_CLERK' , 'ST_MAN', 'FI_ACCOUNT'));
+                
+
+
+-- Q9 In the job details change the atm pin 423295535 with 42321992
+
+
+UPDATE customer 
+SET 
+    atm_no = 42321992
+WHERE
+    atm_no = 423295535;
+
+-- Q10 In the job, details change all sales account into admin and account type into saving
+UPDATE account_type 
+SET 
+    department_name = 'admin',
+    type_account = 'saving'
+WHERE
+    department_name = 'sales';

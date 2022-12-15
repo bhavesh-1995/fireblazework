@@ -1,0 +1,1509 @@
+use demo;
+select * from student;
+
+select country from student;
+
+select name, age,country from student;
+
+describe student ;
+desc student;
+
+select percentage as "per new" from student;
+
+set sql_mode = 'PIPES_AS_CONCAT' ;
+select address ||" "|| country new_col from student ;
+
+select concat(address, " " , country) new_col from student;
+
+# Arithmatic operations
+
+select * from student;
+
+
+select percentage, percentage + 10 as new_percentage from student ;
+select percentage, 2 * (percentage + 10) new_percentage from student ;
+
+
+select name || " " || "got" || " " || percentage || " " || "percentage" as new_value from student;
+
+select concat(name," " ,"got"," ",percentage," ","percentage") new_value from student;
+
+
+
+
+
+
+
+
+
+select count(address) from student ;
+
+select count(distinct(address)) from student;
+
+select distinct(address) from student;
+
+
+select * from student;
+
+
+# write a query to merge name and age.
+
+
+select concat(name," ",age) as new1 from student;
+
+
+use demo;
+select * from student;
+
+
+select * from student where country = 'india' ;
+select name,percentage from student where percentage <> 60 ;
+
+#Between
+
+select name, age from student where age between 20 and 80 ;
+
+select address from student where address = 'pune' or address = 'Banglore' ;
+
+select * from student ;
+
+select * from student where address = 'pune' ;
+select * from student where address like 'pune' ;
+
+select * from student where address like 'pune' or address like 'banglore' ;
+
+select * from student where address in ('pune','banglore') ;
+
+
+#fetch the countries starting with first letter as "I" .
+
+select country from student where country like 'i%';
+
+#fetch the address ending with "E".
+
+select address from student where address like "%e" ;
+
+
+select address from student where address like "%gl%" ;
+
+
+select address from student where address like "____" ;
+
+select * from student ;
+
+select country from student where country like "__d%" ;
+
+
+use hr ;
+select * from employees ;
+
+select count(first_name) ,commission_pct from employees where commission_pct is null ;
+
+
+select count(first_name) from employees where commission_pct is null ;
+
+
+select first_name , commission_pct from employees where commission_pct is not null ;
+
+
+select count(first_name) from employees where commission_pct is not null ;
+
+#AND,OR
+
+use demo;
+select * from student;
+
+select * from student where country = "usa"  and percentage = 90 ;
+
+select * from student where country = "usa"  or percentage = 90 ;
+
+
+
+
+
+
+
+
+
+
+select * from student where country  ="uk" and percentage = 80 ;
+
+
+
+
+select * from student;
+
+select * from students where address = "alaska" or country = "uk" ;
+
+select * from students where country not like "usa" ;
+
+
+
+# order by
+
+select country from student order by country desc ;
+
+select percentage from student order by percentage desc limit 3,1;
+
+
+
+
+select percentage from student order by percentage desc limit 3;
+
+
+select distinct(percentage) from student order by percentage desc limit 3;
+
+#Character and case conversion functions
+
+use demo ;
+
+select * from student ;
+
+select concat(name," ", age) new_col from student;
+
+# subtring - "substr"
+
+/* function in MySQL is used to derive substring from any given string .It extracts a string with a specified length,
+ starting from a given location in an input string. The purpose of substring is to return a specific portion of the string. */
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  SELECT SUBSTRING("fireblazeaischool", 3) AS Sub_String; 
+  
+  
+  
+  
+
+ SELECT SUBSTRING("fireblazeaischool", 3, 8) AS Sub_String; 
+ 
+ SELECT SUBSTR("fireblazeaischool", -3 ) AS Sub_String; 
+ 
+SELECT SUBSTRING(address,1,3) AS Sub_String from student; 
+select * from student;
+
+#length
+
+select length("fireblazeaischool") ;
+
+
+
+select address,length(address) from student; 
+
+
+
+
+
+select length(address) from student; 
+
+
+#Instr
+
+#It returns the position of the first occurrence of a substring within a given string.
+
+SELECT INSTR("SQL is a powerful Language", "powerful") ; 
+
+
+
+
+
+
+SELECT INSTR("SQL is a powerful Language", "122355")  ; 
+
+
+select * from student;
+ 
+select address,instr(address,"a") from  student;
+
+#LPAD 
+#LPAD() function in MySQL is used to pad or add a string to the left side of the original string. 
+
+SELECT LPAD("fireblazeai",17, "<->") AS LeftPaddedString;
+
+
+
+
+
+
+
+SELECT LPAD(address, 20, "*") AS LeftPaddedString  from student; 
+
+
+
+
+
+
+
+SELECT RPAD("fireblazeai", 20, "*") AS LeftPaddedString;
+
+
+
+
+
+SELECT RPAD(address, 20, "*") AS LeftPaddedString  from student; 
+
+
+
+# Trim
+
+select trim("        Ai         ") ;
+
+select * from students ;
+select country,lower(country) from students ;
+
+select upper("ai") ;
+
+#Number Functions
+
+select round(42.9367,0) ;
+
+select truncate(42.9367,2) ;
+
+select mod(25,4) ;
+
+#Date Functions
+
+SELECT DATE('2004-12-21 01:02:03'); #The date() function is used to get the date from given date/datetime.
+ 
+ 
+ # yyyy-mm-dd
+ 
+ 
+ 
+ 
+ 
+ 
+select curdate();	#The curdate() function is used to get the current date.
+
+
+
+
+select day('2004-12-21'); #The day() function is used to get the day from the given date.
+
+
+
+
+
+select dayname('2004-12-21') ;#The dayname() function is used to get the name of the day from the given date.
+
+
+
+
+select dayofmonth('2004-12-21') ; #The dayofmonth() function is used to get the day for the specified date.
+
+
+
+
+select dayofweek('2004-12-21'); #The dayofweek() function is used to get the day of the week in numeric.
+
+
+
+select dayofyear('2004-12-21'); #The dayofyear() function is used to get the number of day in the year.
+
+
+
+select monthname('2004-12-21') ;#The monthname() function is used to get the full month name.
+
+
+
+select now() ; #function is used to get the current date and time.
+
+
+select sysdate() ;
+
+select weekofyear('2004-12-21'); #The weekofyear() function is used to get the week of the given date.
+
+
+select * from student ;
+
+select * from student where address in ('pune','banglore') ;
+
+select * from student where address like 'pune' or address like 'banglore' ;
+
+
+select name,percentage from student order by percentage limit 2,1 ;
+
+select distinct(count((percentage)) from student;
+
+
+select name,percentage,country from student where percentage between 60 and 90 and country = 'india' ;
+
+
+
+select name ,age ,address from student where address like '%as%' ;
+
+
+
+
+select country, name, percentage from student where country = 'INDIA' or percentage  between 60 and 90;
+
+
+select * from student ;
+
+
+select name ,age ,address from student where address like '___o%' ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#NESTING FUNCTION 
+  
+  use demo;
+
+select round(avg(percentage),2) from student ;
+
+#select round(82.3333,2) 
+
+select avg(percentage) from student ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select lpad(substr(address,3),10,"*") as nestedvalue from students ;     
+
+
+
+
+
+
+select substr(address,3) as nestedvalue from students ;  
+
+use demo;
+select name from students;
+select count(name) from students;
+
+select round(avg(percentage),2) new_record from students;
+
+select avg(percentage) new_record from students;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* NULLIF FUNCTION
+
+it returns NULL if both the expressions passed are equal or else 
+it returns the first expression if both thew expressions are not equal */
+
+
+select nullif("Fireblazeai" ,"fireblazeai") as new1 ;
+
+
+
+select nullif(12348769 , "fireai") as new2 ;
+
+
+
+
+
+
+
+
+
+
+/* Coalesce() function
+
+It returns the first non-null value in a list of expressions or
+null if all the values in a list are null. */
+
+
+
+
+
+
+select coalesce(null,"a",null,null,2) as firtnon_null; 
+
+
+
+
+
+
+
+use hr ;
+
+select * from employees ;
+
+
+
+
+
+
+
+select first_name ,coalesce(commission_pct,manager_id ) as first_non_null from employees;
+
+
+
+
+
+
+
+
+
+
+select first_name , commission_pct, manager_id, coalesce(commission_pct,manager_id ) as first_non_null from employees;
+
+
+
+
+
+
+select first_name , commission_pct, manager_id, coalesce(commission_pct,manager_id ) as first_non_null 
+from employees where commission_pct is not null or manager_id is not null;
+   
+   
+   
+   
+   
+   
+   
+   
+select first_name , coalesce(commission_pct,"no value") as filled_nulls
+ ,coalesce(manager_id , "no  value") as filled_nulls from employees;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ select first_name ,  coalesce(commission_pct,"no value") as filled_nulls
+ ,coalesce(manager_id , "no  value") as filled_nulls from employees
+ where commission_pct is null or manager_id is null;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ select count(coalesce(commission_pct,"no value")) as filled_nulls from employees
+ where commission_pct is null or manager_id is null;
+ 
+ select coalesce(commission_pct,"no value") as filled_nulls from employees
+ where commission_pct is null or manager_id is null;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /*CASE STATEMENTS
+ 
+ It is used to find a value by passing over conditiond whenever any condition staisfies the given statement
+ otherwise it returns the statement in an else part. However, when a condition is satisfied it stopds reading further and reurns the output. */
+ 
+ use demo ;
+
+ select * from student ;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ select *,
+ case 
+	when percentage > 90 then "Topper"
+    when percentage > 60 then "Pass"
+    else "Fail" END as Result
+    from student order by percentage desc limit 5 ;
+    
+
+
+ select name,
+ case when percentage > 90 then "Topper"
+ when percentage > 60 then "Pass" 
+ else "Fail" END as Result from student order by percentage desc limit 5 ;
+    
+
+#fetch the 2nd and 3rd highest percentage with name where the address should be nashik.
+
+select name,percentage,address from student where address = 'nashik' order by percentage desc limit 1,2 ;
+
+
+#fetch name where last letter is r and age should be greater than 50.
+
+select name,age from student where name like '%r' or age > 50;
+    
+    
+    select * from student ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#AVERAGE #avg
+use demo ;
+
+select round(avg(percentage),2) as average_percentage from student ;
+
+select * from student ;
+
+select avg(percentage) from student ;
+
+
+
+
+
+
+
+
+
+
+
+select country , round(avg(percentage),2) from students where country ='India' ;
+
+
+
+
+
+select country , avg(percentage) from students where country ='usa' ;
+
+
+
+
+
+
+
+
+
+#count 
+select count(name) from student;
+
+
+
+select name ,country,  max(percentage) from student ;
+
+
+select name , country , min(percentage) from student ;
+
+select * from student;
+
+select sum(percentage) from  student ;
+
+select country,sum(percentage) from students where country = 'usa' ;
+
+select country,sum(percentage) from students where country = 'india' ;
+
+
+
+
+
+select round(stddev(percentage),2) from students ;
+
+select stddev(percentage) from students ;
+
+
+
+
+
+select variance(percentage)from students ;
+
+
+
+
+select round(variance(percentage),2) from students ;
+
+
+
+
+
+select count(distinct(address))from students ;
+
+
+
+
+
+select distinct(address) from students;
+
+
+
+
+
+
+#GROUP BY
+
+select * from student ;
+
+select country , avg(percentage) from student group by country ;
+
+select country , sum(percentage) ,avg(percentage), count(id) from student group by country ;
+
+
+
+
+
+
+
+select country , round(avg(percentage),2) as avg_percentage from student group by country order by avg(percentage) desc;
+ 
+ 
+ 
+ 
+ 
+ select * from student ;
+
+
+
+select address , round(avg(percentage),2) as avg_percentage from student group by address order by avg(percentage) limit 1,1;
+
+
+
+
+
+
+
+
+use hr;
+
+
+
+
+
+
+
+select * from employees;
+
+select  avg(salary) from employees;
+
+select department_id , avg(salary) from employees group by department_id  order by avg(salary) desc;
+
+use demo;
+select * from student where country = 'india' ;
+
+select * from student having country = 'india' ;
+
+select address,avg(percentage) from student where avg(percentage) > 80 ;
+
+select address,percentage from student having percentage > 80 ;
+
+select address, percentage from student ;
+
+select avg(percentage) from student;
+
+
+use hr;
+
+select * from employees ;
+
+select job_id , avg(salary) from employees group by job_id ;
+
+
+
+
+
+
+select job_id , avg(salary) from employees group by job_id having avg(salary) > 10000;
+
+
+
+
+
+#Having Clause
+use demo;
+
+select * from student ;
+select  address,percentage from student group by address having percentage > 60 ;
+
+select country, count(name) from student group by country ;
+
+
+
+use hr;
+select job_id , avg(salary) from employees group by job_id having avg(salary) > 10000;
+
+
+
+# fetch the avg(salary) and group them according to the department_id
+
+select department_id , salary from employees group by department_id;
+select * from employees;
+
+use demo;
+
+
+select * from student;
+
+select country, avg(percentage) from student group by  country  order by avg(percentage) desc limit 5 ;
+
+
+
+
+
+
+
+
+
+use hr ;
+select * from employees ;
+
+select * from departments;
+
+
+
+
+
+
+
+#Inner Join
+
+select count(e.first_name) , d.department_name, d.department_id from employees e
+inner join departments d on e.department_id = d.department_id group by department_name order by  count(e.first_name) desc; 
+
+
+
+
+
+
+
+
+select e.first_name, e.last_name,d.department_name,d.department_id from employees e inner join departments d on e.department_id = d.department_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select * from employees e
+inner join departments d on e.department_id = d. department_id group by department_name ;
+
+
+
+
+select  d.department_name, count(e.first_name) as total_count from employees e
+inner join departments d on e.department_id = d. department_id group by department_name ;
+
+
+
+
+
+
+
+
+#Left Join
+
+select e.first_name , e.last_name, d.department_name from employees e
+left join departments d on e.department_id = d. department_id group by department_name ; 
+
+
+
+
+
+
+
+select   count(e.first_name) as total_count ,d.department_name  from employees e
+left join departments d on e.department_id = d. department_id group by department_name ;
+
+
+
+
+
+
+
+
+#Right Join
+
+select e.first_name , e.last_name, d.department_name from employees e
+right join departments d on e.department_id = d. department_id group by department_name ; 
+
+
+
+
+
+select e.first_name ,d.department_name from employees e
+right join departments d on e.department_id = d.department_id where department_name is null ;
+
+
+
+
+# Natural Join
+
+select e.first_name , e.last_name, d.department_name from employees e
+natural join departments d  ; 
+
+
+
+
+select * from employees e
+natural join departments d  ; 
+
+
+
+
+
+# Full Join
+
+select e.first_name , e.last_name, d.department_name from employees e
+left join departments d on e.department_id = d. department_id group by department_name 
+union
+select e.first_name , e.last_name, d.department_name from employees e
+right join departments d on e.department_id = d. department_id group by department_name ;
+
+
+#cross join
+
+
+select e.first_name , e.last_name, d.department_name from employees e
+cross join departments d ; 
+
+
+
+
+
+
+# Subquery
+
+
+use hr;
+
+select * from employees ;
+
+select first_name from employees where department_id in(select department_id from departments where department_name = 'IT');
+
+
+
+
+
+
+
+
+
+
+
+select department_id from departments where department_name = 'IT';
+
+
+
+
+select first_name from employees where department_id in(60);
+
+
+
+
+
+select department_id from departments where department_name = 'IT';
+
+
+
+
+
+
+select e.first_name from employees e inner join departments d on e.department_id = d.department_id
+where d.department_name = 'it' ;
+
+
+
+use hr;
+
+select * from employees ;
+
+select first_name, max(salary) from employees where salary <( select max(salary) from employees) ;
+
+# max(salary) from employees where salary <(24000) ;
+
+select max(salary) from employees ;
+ 
+ 
+ 
+ 
+ 
+select salary from employees order by salary desc limit 2 ;
+
+select salary from employees order by salary desc limit 1,1 ;
+
+
+
+
+
+
+
+select first_name,salary from employees order by salary desc limit 1,1 ;
+
+
+
+
+
+
+
+
+
+select employee_id,salary from employees order by salary desc limit 5 ;
+
+
+
+
+
+
+
+
+
+#single row subquery
+
+
+
+SELECT FIRST_NAME, LAST_NAME, SALARY 
+FROM employees 
+WHERE SALARY > (SELECT salary FROM employees WHERE last_name = 'ernst') ;
+
+
+SELECT salary FROM employees WHERE last_name = 'ernst' ;
+
+
+/*SELECT FIRST_NAME, LAST_NAME, SALARY 
+FROM employees 
+WHERE SALARY > (6000);*/
+
+
+
+
+# Write a query to find the name (first_name, last_name), and salary of the employees
+# who earns more than the average salary and works in the IT department.
+
+
+SELECT first_name, last_name, salary 
+FROM employees 
+WHERE department_id IN (SELECT department_id FROM departments WHERE department_name LIKE 'IT') 
+AND salary > (SELECT avg(salary) FROM employees);
+
+
+SELECT round(avg(salary),2) FROM employees;
+
+
+
+select e.first_name , e.last_name , e.salary from employees e inner join departments d
+on e.department_id = d.department_id where department_name LIKE 'IT' having e.salary > avg(e.salary)  ;
+
+
+
+
+
+
+
+
+/* Write a query to find the name (first_name, last_name), and salary of the employees
+ whose salary is greater than the average salary of all departments. */
+
+SELECT first_name, last_name,salary  FROM employees 
+WHERE salary > 
+ALL(SELECT avg(salary)FROM employees GROUP BY department_id) ;
+
+SELECT department_id, avg(salary)FROM employees GROUP BY department_id ;
+
+
+
+
+
+SELECT first_name, last_name,salary  FROM employees 
+WHERE salary >
+any (SELECT avg(salary)FROM employees GROUP BY department_id) ;
+
+/* ANY means that the condition will be satisfied if the operation is true for any of the values in the range. 
+ALL means that the condition will be satisfied only if the operation is true for all values in the range. */
+
+
+#exists and not exists 
+
+
+use demo ;
+select country,count(country) from students group by country ;
+
+
+
+
+use demo ;
+select * from student;
+select max(age)  from  student;
+
+
+
+select name , age from student where exists (select age from students where age > 90 ) ;
+
+#select name , age from student where exists (99) ;
+
+
+
+select age from students where age > 90 ;
+
+
+
+
+select name , age from students where not exists (select age from students where age > 90 ) ;
+
+
+
+
+
+
+
+SELECT country, count(name) FROM students WHERE percentage BETWEEN 70 and 90 GROUP BY country;
+
+
+
+
+
+select name, age from students where not exists (select age from students where age > 99 ); 
+
+
+#select name, age from students where not exists (); 
+
+
+
+
+
+
+
+
+select age from students where age > 99 ;
+
+
+
+
+
+
+select name, age from students where exists (select age from students where age > 99 ); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Update statement
+
+use demo ;
+select * from student ;
+
+
+
+ 
+ 
+set sql_safe_updates = 0;
+
+
+
+
+
+
+
+
+
+
+
+update student set percentage = 92 where percentage = 80;   
+
+
+select *  from student ;
+
+
+
+
+
+
+update student set name = 'YXZ'  where name = 'XYZ';
+
+
+
+update student set name = 'XYZ' where name = 'YXZ' ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+update student set name = 'YXZ'  where percentage = 92; 
+
+
+
+
+
+
+
+select * from student;
+
+
+
+
+
+
+# Insert Values
+
+select count(id) from student ;
+
+
+
+
+select  * from  student;
+
+insert into student values (23,'ZNH',89,'KOLHAPUR',78,'INDIA'),
+						    (24,'JNH',79,'KOLHAPUR',58,'INDIA') ,
+                            (25,'JZH',76,'KOLHAPUR',93,'INDIA');  
+
+
+
+
+
+
+
+
+select * from student ;
+
+select count(id) from student ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Delete statement
+
+delete from student where id= 25 ;
+
+
+
+
+
+select count(id) from students ;
+select count(distinct(id)) from students ;
+select * from students ;
+
+
+#tTruncate table
+# create database newstudents ;
+
+use newstudents;
+
+select * from students1 ;
+
+Truncate table students1 ;
+
+drop table students1;
+select * from students1 ;
+
+drop database newstudents;
+
+
+
+
+
+
+select * from students;
+
+Truncate table students;
+
+drop table students;
+
+use hr;
+select * from employees;
+select * from departments;
+# fetch  total no. of first_name department wise.give only matching records .
+
+select d.department_name , count(e.first_name) as total_count from employees e inner join departments d on e.department_id = d.department_id
+group by d.department_name order by total_count limit 1,1; 
+
+
+
+select max(salary) from employees where salary < (select max(salary) from employees) ;
+
+
+
+#Alter 
+
+use demo; 
+select * from student ;  
+   
+   
+    
+     
+      
+       
+        
+         
+         
+
+
+alter table student rename students ; 
+ 
+ select * from students ;
+ 
+ 
+   
+    
+     
+      
+alter table students add performance int;
+
+alter table students drop performance ;
+
+
+#alter table student drop tdl ;
+
+
+
+
+
+ALTER TABLE students
+ADD roll_no  INT FIRST;
+
+alter table students add city char first;
+alter table students drop city;
+select * from students ;
+
+
+
+
+
+
+use demo;
+
+alter table student add city_no int after country ;
+select * from student ;
+insert into student (city_no) values (1);
+delete from student where id is null;
+
+alter table student drop city_no  ;
+
+
+
+
+ALTER TABLE student
+ADD address_id INT 
+AFTER address;
+
+
+
+
+# ALTER TABLE student
+# DROP column_name 
+
+ALTER TABLE student
+CHANGE roll_no roll_number int ;
+
+alter table students change roll_number roll_no int ;
+
+select * from students ;
+
+
+
+
+
+alter table student add department_id int ;
+
+# delete from student where department_id = 1;
+
+set sql_safe_updates = 0 ;
+
+select * from student;
+
+/*update student set department_id = 1 where id = 11;
+update student set department_id = 2 where id = 12;
+update student set department_id = 3 where id = 13;
+update student set department_id = 4 where id = 14;
+update student set department_id =5 where id = 15;
+update student set department_id = 6 where id = 16;
+update student set department_id = 7 where id = 17;
+update student set department_id = 8 where id = 18;
+update student set department_id = 9 where id = 19;
+update student set department_id = 10 where id = 20;
+update student set department_id = 11 where id = 21;
+update student set department_id = 12 where id = 22;
+update student set department_id = 13 where id = 23;
+update student set department_id = 14 where id = 24; */
+
+
+ALTER TABLE students
+ADD PRIMARY KEY(department_id);
+
+desc students;
+#ALTER TABLE student DROP PRIMARY KEY;
+
+# describe students;
+
+
+
+
+CREATE TABLE student_details (
+    name varchar(25),
+    id int not null,
+    age int,
+    address varchar(25),
+    department_id int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (department_id) 
+    references
+    student(department_id)
+    ON DELETE CASCADE
+);
+
+/* ON DELETE Cascade option is used to specify whether you want rows deleted in a child table when
+corresponding rows are deleted in the parent table. if you do not specify cascading deletes, the default
+behaviour of hte database server prevents you from deleting data in a table if other tables reference it */
+
+select * from student_details ;
+desc student_details ;
+
+
+use demo ;
+ 
+ 
+/*CREATE VIEW DetailsView AS
+SELECT NAME, ADDRESS
+FROM Students ;
+#WHERE S_ID < 5;
+
+select * from DetailsView ;*/
+select * from students ;
+
+/*CREATE VIEW DetailsView1 AS
+SELECT NAME, ADDRESS, country
+FROM students ;*/
+
+select * from DetailsView2 ;
+
+CREATE VIEW DetailsView2 AS
+SELECT NAME, ADDRESS,country
+FROM students where address = 'banglore';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
